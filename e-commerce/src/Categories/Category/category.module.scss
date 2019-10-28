@@ -1,0 +1,36 @@
+@mixin background($imageName) {
+    background-image: url('../../resources/#{$imageName}.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width:90%;
+    margin:0 auto;
+    color:#fff;
+    font-weight:600;
+    font-size:20px;
+    box-shadow: -3px 4px 5px 0px rgba(0,0,0,1)
+   
+}
+.category{
+    height: 100px;
+    flex:1 0 25%;
+    text-align: center;
+    margin: 15px 0;
+    line-height: 100px; 
+   
+   .bookCategory
+   {
+    @include background("booksCategory");
+   }
+   .electronicsCategory
+   {
+    @include background("electronicsCategory");
+   }
+   .clothsCategory
+   {
+    @include background("clothsCategory");
+   }
+
+   
+}
+
