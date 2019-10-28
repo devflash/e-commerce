@@ -1,0 +1,34 @@
+.product
+{
+    border-bottom: 1px solid black;
+    padding: 10px 5px;
+   .productDescription
+   {
+       .productTitle span
+       {
+           font-size:20px;
+       }
+       .productPrice span
+       {
+           font-size:18px;
+           color:red;
+       }
+   }
+   .productOptions
+   {
+       float:right;
+       width:200px;
+       text-align: center;
+       span
+       {
+        display: inline-block;
+        margin-right: 10px;
+       }
+   }
+   &::after
+   {
+    content: "";
+    clear: both;
+    display: table;
+   }
+}

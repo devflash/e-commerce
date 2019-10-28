@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import Catgories from '../Categories/categories';
+import Products from '../Products/products';
 import styles from './dashboard.module.scss';
 class Dashboard extends Component
 {
@@ -10,7 +11,7 @@ class Dashboard extends Component
                    <Catgories/>
                 </div>
                 <div>
-                    <span>Product Section</span>
+                   <Products/>
                 </div>
             </div>
         )
