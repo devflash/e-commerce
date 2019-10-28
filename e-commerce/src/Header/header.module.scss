@@ -1,8 +1,26 @@
 .header{
-    .projectTitle{
+    padding: 20px 10px;
+    background-color: #2980b9;
+    display: flex;
+    justify-content: space-between;
+        .projectTitle
+        {
+            font-size:25px;
+            color:#fff;
+        }
+        .navigation
+        {
+            padding-left:10px;
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a
+            {
+                text-decoration: none;
+                color:#fff;
 
-    }
-    .navigation{
-        
-    }
+            }
+        }
+    
 }

@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
+import Catgories from '../Categories/categories';
 import styles from './dashboard.module.scss';
 class Dashboard extends Component
 {
     render(){
         return(
-            <div>
+            <div className={styles.dashboard}>
                 <div>
-                    <span>Category section</span>
+                   <Catgories/>
                 </div>
                 <div>
                     <span>Product Section</span>
