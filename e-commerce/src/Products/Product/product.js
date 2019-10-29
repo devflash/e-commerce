@@ -9,11 +9,11 @@ const Product = (props)=>{
             
             <div className={styles.productDescription}>
                 <div className={styles.productTitle}>
-                    <span>Coolpad Cool 3 Plus (Cherry Black, 3GB RAM, 32GB Storage)</span>
+                    <span>{props.productName}</span>
                 </div>
                 <div className={styles.productPrice}>
                     <span><FaRupeeSign/></span>
-                    <span>6,499</span>
+                    <span>{props.productPrice}</span>
                 </div>
             </div>
             <div className={styles.productOptions}>

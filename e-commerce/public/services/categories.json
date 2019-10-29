@@ -1,0 +1,20 @@
+[
+    {
+        "id":"clothes-101",
+        "name":"Clothing",
+        "type":"clothsCategory",
+        "selected":false
+    },
+    {
+        "id":"electroincs-102",
+        "name":"Electronics",
+        "type":"electronicsCategory",
+        "selected":true
+    },
+    {
+        "id":"books-101",
+        "name":"Books",
+        "type":"booksCategory",
+        "selected":false
+    }
+]

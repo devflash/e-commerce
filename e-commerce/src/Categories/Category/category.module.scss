@@ -2,7 +2,7 @@
     background-image: url('../../resources/#{$imageName}.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     width:90%;
     margin:0 auto;
     color:#fff;
@@ -18,7 +18,7 @@
     margin: 15px 0;
     line-height: 100px; 
    
-   .bookCategory
+   .booksCategory
    {
     @include background("booksCategory");
    }

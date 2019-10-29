@@ -2,13 +2,16 @@ import React from 'react';
 import Category from './Category/category';
 import styles from './categories.module.scss';
 const Categories = (props)=>{
+    let categoryList=props.categories.map(cur=>{
+        return  <Category categoryName={cur.name} categoryType={cur.type}/>
+    })
     return(
         <div className={styles.categories}>
             <span>Categories</span>
             <div className={styles.categoryList}>
-                <Category categoryName="Clothing" categoryType="clothsCategory"/>
-                <Category categoryName="Electronics" categoryType="electronicsCategory"/>
-                <Category categoryName="Books" categoryType="bookCategory"/>
+               {
+                   categoryList
+               }
             </div>
             
         </div>
