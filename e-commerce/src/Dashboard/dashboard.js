@@ -7,12 +7,90 @@ import {connect} from 'react-redux';
 import * as productActions from '../store/actions/productActions';
 class Dashboard extends Component
 {
-    componentDidMount(){
-      if(this.props.categories===null || this.props.products===null)  
-        this.props.fetchCategories();
+    state={
+        currentPage:1
     }
-   
+    constructor(){
+        super();
+        this.numberOfPostPerPage=5;
+        this.numberOfPages=null;
+        this.backwardEnable=false;
+        this.forwardEnable=true; 
+    }
+    
+    componentDidMount(){
+       if(this.props.categories && this.props.products)
+       {
+        this.numberOfPages= Math.ceil(this.props.products.length / this.numberOfPostPerPage);
+       }
+       else
+       {
+        this.props.fetchCategories().then(()=>{
+            this.numberOfPages= Math.ceil(this.props.products.length / this.numberOfPostPerPage);
+        });
+       }
+        
+    }
+   backwardClickHandler=()=>{
+        this.setState((prevState)=>{
+           if(prevState.currentPage>1)
+           {
+
+           
+                return{
+                    currentPage:prevState.currentPage -1     
+                }
+        
+            }     
+
+           
+        });        
+   }
+   forwardClickHandler=()=>{
+    this.setState((prevState)=>{
+        if(prevState.currentPage<this.numberOfPages)
+        {
+
+        
+            return{
+                currentPage:prevState.currentPage + 1     
+            }
+        }
+            
+
+       
+    });
+   }
+   enableDisablePaginationButtons=(currentPage)=>{
+        switch(true)
+        {
+            case currentPage===1:
+                this.backwardEnable=false;
+                this.forwardEnable=true
+                break;
+            case currentPage>1 && currentPage<this.numberOfPages:
+                this.forwardEnable=true;
+                this.backwardEnable=true;
+                break;
+            case currentPage===this.numberOfPages:
+                this.forwardEnable=false;
+                this.backwardEnable=true;
+                break;
+        }
+   }
     render(){
+       
+        let lastIndex=this.state.currentPage * this.numberOfPostPerPage;
+        let startIndex=lastIndex-this.numberOfPostPerPage;
+        let productsToDisplay;
+       
+
+        if(this.props.products)
+        {
+            productsToDisplay=this.props.products.slice(startIndex,lastIndex);
+            this.enableDisablePaginationButtons(this.state.currentPage);
+        }
+            
         return(
             <div className={styles.dashboard}>
                 <div>
@@ -27,7 +105,7 @@ class Dashboard extends Component
                 <div>
                     {
                         this.props.products ?
-                            <Products products={this.props.products}/>
+                            <Products products={productsToDisplay}/>
                        :
                             null
                     }
@@ -35,7 +113,11 @@ class Dashboard extends Component
                    
                 </div>
                 <div>
-                    <Pagination/>
+                    <Pagination backwardEnable={this.backwardEnable} 
+                                currentPage={this.state.currentPage}
+                                forwardEnable={this.forwardEnable} 
+                                backwardButtonClick={this.backwardClickHandler}
+                                forwardButtonClick={this.forwardClickHandler}/>
                 </div>
             </div>
         )

@@ -25,22 +25,30 @@ const fetchProductsFail=()=>{
         type:actionTypes.FETCH_PRODUCTS_FAIL
     }
 }
-export const fetchCategories=(dispatch)=>
-    dispatch=>{
-
+export const fetchCategories=(dispatch)=>{
+    return dispatch =>{
+        return new Promise((resolve,reject)=>{
+            axios.get('./services/categories.json').then(response=>{
+                let categories=response.data;
+                let selectedCategory=categories.filter(cur=>{
+                   return cur.selected;
+                });
+                dispatch(fetchCategoriesSuccess(response.data,selectedCategory));
+                axios.get(`./services/${selectedCategory[0].id}.json`).then(response=>{
+                    dispatch(fetchProductSuccess(response.data));
+                    resolve()
+                }).catch(error=>{
+                    dispatch(fetchProductsFail(response.data));
+                    reject();
+                });
+            }).catch(error=>{
+                dispatch(fetchCategoriesFail());
+                reject();
+            });
+        })
     
-    axios.get('./services/categories.json').then(response=>{
-        let categories=response.data;
-        let selectedCategory=categories.filter(cur=>{
-           return cur.selected;
-        });
-        dispatch(fetchCategoriesSuccess(response.data,selectedCategory));
-        axios.get(`./services/${selectedCategory[0].id}.json`).then(response=>{
-            dispatch(fetchProductSuccess(response.data));
-        }).catch(error=>{
-            dispatch(fetchProductsFail(response.data));
-        });
-    }).catch(error=>{
-        dispatch(fetchCategoriesFail());
-    });
+    }
+        
 }
+     
+    

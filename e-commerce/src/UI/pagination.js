@@ -3,17 +3,20 @@ import styles from './pagination.module.scss';
 
 import { FaChevronLeft,FaChevronRight } from 'react-icons/fa'
 const Pagination = props =>{
+      
     return(
         <div className={styles.pagination}>
-            <div className={styles.directionIcon}>
+            <button className={props.backwardEnable ? styles.enableButton : styles.disableButton}
+                    onClick={props.backwardButtonClick}>
                 <FaChevronLeft/>
-            </div>
+            </button>
             <div>
-                <span>1</span>
+                <span>{props.currentPage}</span>
             </div>
-            <div className={styles.directionIcon}>
+            <button className={props.forwardEnable ? styles.enableButton : styles.disableButton}
+                    onClick={props.forwardButtonClick}>
                 <FaChevronRight/>
-            </div>
+            </button>
         </div>
     )
 }
