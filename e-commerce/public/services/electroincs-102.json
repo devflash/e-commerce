@@ -3,61 +3,71 @@
         "id":10001,
         "productName":"boAt BassHeads 100 in-Ear Headphones with Mic (Black)",
         "productPrice":"369",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10002,
         "productName":"Amazfit Bip Lite Smart Watch (Black)",
         "productPrice":"3,999",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10003,
         "productName":"Samsung Galaxy M10 (Charcoal Black, 3GB RAM, 32GB Storage)",
         "productPrice":"7,499",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10004,
         "productName":"Nokia 6.1 Plus (Blue, 6GB RAM, 64GB Storage)",
         "productPrice":"9,999",
-        "productRating":3
+        "productRating":3,
+        "favourite":false
     },
     {
         "id":10005,
         "productName":"Kodak 108cm (43 inches) 4K Ultra HD Smart IPS LED TV 43UHDXSMART (Black) (2019 Model)",
         "productPrice":"21,299",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10006,
         "productName":"Fortex 80 cm (32 inches) HD Ready IPS LED TV FX32Q01 (Black)",
         "productPrice":"5,499",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10007,
         "productName":"Acer Aspire 3 Thin A315-54 ",
         "productPrice":"28,499",
-        "productRating":3
+        "productRating":3,
+        "favourite":false
     },
     {
         "id":10008,
         "productName":"Apple AirPods with Charging Case",
         "productPrice":"14,499",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10009,
         "productName":"Lenovo V145-AMD-A6 ",
         "productPrice":"54,499",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     },
     {
         "id":10010,
         "productName":"Blue Star 1.0 Ton 3 Star Inverter Split AC ",
         "productPrice":"32,999",
-        "productRating":4
+        "productRating":4,
+        "favourite":false
     }
 
 ]

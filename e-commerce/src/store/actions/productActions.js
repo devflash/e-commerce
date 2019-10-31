@@ -1,5 +1,13 @@
 import * as actionTypes from '../actions/actionTypes';
 import axios from 'axios';
+
+export const updateFavourite= (productId)=>{
+    return{
+        type:actionTypes.UPDATE_FAVOURITE,
+        productId:productId
+    }
+}
+
 const fetchCategoriesSuccess=(categories,selectedCategory)=>{
     return{
         type:actionTypes.FETCH_CATEGORIES_SUCCESS,

@@ -3,7 +3,8 @@ const initialState={
     categories:null,
     products:null,
     loading:false,
-    error:false
+    error:false,
+    wishlist:[]
 }
 const productReducer=(state=initialState,action)=>{
     
@@ -32,6 +33,29 @@ const productReducer=(state=initialState,action)=>{
                 ...state,
                 error:true
             }
+        }
+        case actionTypes.UPDATE_FAVOURITE:{
+           
+                return{
+                
+                    ...state,
+                    products:state.products.map(cur=>{
+                        if(cur.id!=action.productId)
+                        {
+                            return cur;
+                        }
+                        return{
+                            ...cur,
+                            favourite: !cur.favourite
+                        }
+                   
+                    }),
+                    
+                                       
+              
+            }
+             
+            
         }
         default:
             return state;

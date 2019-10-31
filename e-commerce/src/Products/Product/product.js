@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './product.module.scss';
-import {MdFavoriteBorder} from 'react-icons/md';
+import {TiHeartFullOutline} from 'react-icons/ti';
+import {TiHeartOutline} from 'react-icons/ti';
 import {FiShoppingCart} from 'react-icons/fi';
 import {FaRupeeSign} from 'react-icons/fa';
 const Product = (props)=>{
@@ -17,7 +18,9 @@ const Product = (props)=>{
                 </div>
             </div>
             <div className={styles.productOptions}>
-                <span><MdFavoriteBorder/></span>
+                <span onClick={props.favouriteClick}>
+                    {props.favourite ? <TiHeartFullOutline color='#e74c3c'/> : <TiHeartOutline/> }
+                </span>
                 <span><FiShoppingCart/></span>
             </div>
         </div>

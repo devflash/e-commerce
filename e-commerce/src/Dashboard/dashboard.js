@@ -78,6 +78,11 @@ class Dashboard extends Component
                 break;
         }
    }
+   favouriteChangeHandler=(projectId)=>{
+        this.props.updateFavourite(projectId);
+        
+   }
+
     render(){
        
         let lastIndex=this.state.currentPage * this.numberOfPostPerPage;
@@ -105,7 +110,8 @@ class Dashboard extends Component
                 <div>
                     {
                         this.props.products ?
-                            <Products products={productsToDisplay}/>
+                            <Products products={productsToDisplay}
+                                      favouriteClick={(projectId)=>this.favouriteChangeHandler(projectId)}/>
                        :
                             null
                     }
@@ -131,7 +137,8 @@ const mapStateToProps=(state)=>{
 }
 const mapActionToProps=(dispatch)=>{
     return{
-        fetchCategories: ()=> dispatch(productActions.fetchCategories())
+        fetchCategories: ()=> dispatch(productActions.fetchCategories()),
+        updateFavourite: (projectId)=>dispatch(productActions.updateFavourite(projectId))
     }
 }
 export default connect(mapStateToProps,mapActionToProps)(Dashboard);
