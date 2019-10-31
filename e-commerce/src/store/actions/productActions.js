@@ -1,10 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 import axios from 'axios';
 
-export const updateFavourite= (productId)=>{
+export const updateFavourite= (productId,favouriteType,wishListObject)=>{
     return{
         type:actionTypes.UPDATE_FAVOURITE,
-        productId:productId
+        productId:productId,
+        favouriteType:favouriteType,
+        wishListObject:wishListObject
     }
 }
 

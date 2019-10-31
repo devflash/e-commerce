@@ -78,8 +78,21 @@ class Dashboard extends Component
                 break;
         }
    }
-   favouriteChangeHandler=(projectId)=>{
-        this.props.updateFavourite(projectId);
+   favouriteChangeHandler=(productId)=>{
+    
+        this.props.products.forEach((cur,index)=>{
+            if(cur.id===productId)
+            {
+                if(cur.favourite)
+                {
+                    this.props.updateFavourite(productId,cur.favourite,{wishListObjectIdToRemove:cur.id});
+                }
+                else
+                {
+                    this.props.updateFavourite(productId,cur.favourite,{wishListObjectToAdd:cur});
+                }
+            }
+        })
         
    }
 
@@ -111,7 +124,7 @@ class Dashboard extends Component
                     {
                         this.props.products ?
                             <Products products={productsToDisplay}
-                                      favouriteClick={(projectId)=>this.favouriteChangeHandler(projectId)}/>
+                                      favouriteClick={(productId)=>this.favouriteChangeHandler(productId)}/>
                        :
                             null
                     }
@@ -138,7 +151,7 @@ const mapStateToProps=(state)=>{
 const mapActionToProps=(dispatch)=>{
     return{
         fetchCategories: ()=> dispatch(productActions.fetchCategories()),
-        updateFavourite: (projectId)=>dispatch(productActions.updateFavourite(projectId))
+        updateFavourite: (projectId,favouriteType,wishListObject)=>dispatch(productActions.updateFavourite(projectId,favouriteType,wishListObject))
     }
 }
 export default connect(mapStateToProps,mapActionToProps)(Dashboard);
