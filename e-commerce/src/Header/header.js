@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
 import styles from './header.module.scss';
 class Header extends Component{
 
@@ -16,13 +17,13 @@ class Header extends Component{
                     <span>Shopify</span>
                 </div>
                 <div className={styles.navigation}>
-                    <a href="#">Orders</a>
-                    <a href="#" className={styles.hasNotification}>Wishlist
+                    <Link to="/wishList">Orders</Link>
+                    <Link to="/wishList" className={styles.hasNotification}>Wishlist
                         <span className={notificationWishListClasses.join(' ')}>{this.props.wishlist.length}</span>
-                    </a>
-                    <a href="#" className={styles.hasNotification}>Cart
+                    </Link>
+                    <Link to="/wishList" className={styles.hasNotification}>Cart
                         {/* <span className={styles.notification}>1</span> */}
-                    </a>
+                    </Link>
                 </div>
             </div>
         )
