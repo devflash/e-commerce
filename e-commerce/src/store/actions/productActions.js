@@ -10,6 +10,16 @@ export const updateFavourite= (productId,favouriteType,wishListObject)=>{
     }
 }
 
+export const addToCart=(productId,cartType,cartObject)=>{
+    return{
+        type:actionTypes.ADD_TO_CART,
+        productId:productId,
+        cartType:cartType,
+        cartObject:cartObject
+
+    }
+}
+
 const fetchCategoriesSuccess=(categories,selectedCategory)=>{
     return{
         type:actionTypes.FETCH_CATEGORIES_SUCCESS,

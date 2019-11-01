@@ -5,10 +5,10 @@ const wishList=(props)=>{
     return(
         <div className={styles.wishList}>
             <div className={styles.productDescription}>
-                <span>boAt BassHeads 100 in-Ear Headphones with Mic (Black)</span>
+                <span>{props.productName}</span>
                 <span>
                     <FaRupeeSign/>
-                    <span>3000</span>
+                    <span>{props.productPrice}</span>
                 </span>
             </div>
             <div className={styles.wishListOptions}>

@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from'react-redux';
+import Error from '../Hoc/Error';
 import WishList from './WishList/wishList';
 import styles from './wishLists.module.scss';
 class wishList extends Component{
    
     render(){
-       let wishListDisplay=<p>You have no product in wishlist</p>
+       let wishListDisplay=<Error errorMessage="You have no product in wishlist"/>
        if(this.props.wishListArray!==null && this.props.wishListArray.length>0)
        {
         wishListDisplay=this.props.wishListArray.map(cur=>{
-               return <WishList/>
+               return <WishList productName={cur.productName} productPrice={cur.productPrice}/>
            })
        }    
         

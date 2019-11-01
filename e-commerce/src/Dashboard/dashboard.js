@@ -95,6 +95,23 @@ class Dashboard extends Component
         })
         
    }
+   addToCartClickHandler=(productId)=>{
+      
+        this.props.products.forEach((cur,index)=>{
+            if(cur.id===productId)
+            {
+                if(cur.carted)
+                {
+                    this.props.updateCart(productId,cur.carted,{cartObjectIdToRemove:cur.id});
+                }
+                else
+                {
+                    this.props.updateCart(productId,cur.carted,{cartObjectToAdd:cur});
+                }
+            }
+        })
+        
+   }
 
     render(){
        
@@ -124,8 +141,9 @@ class Dashboard extends Component
                     {
                         this.props.products ?
                             <Products products={productsToDisplay}
-                                      favouriteClick={(productId)=>this.favouriteChangeHandler(productId)}/>
-                       :
+                                      favouriteClick={(productId)=>this.favouriteChangeHandler(productId)}
+                                      cartClick={(productId)=>this.addToCartClickHandler(productId)}/>
+                       :            
                             null
                     }
 
@@ -151,7 +169,8 @@ const mapStateToProps=(state)=>{
 const mapActionToProps=(dispatch)=>{
     return{
         fetchCategories: ()=> dispatch(productActions.fetchCategories()),
-        updateFavourite: (projectId,favouriteType,wishListObject)=>dispatch(productActions.updateFavourite(projectId,favouriteType,wishListObject))
+        updateFavourite: (projectId,favouriteType,wishListObject)=>dispatch(productActions.updateFavourite(projectId,favouriteType,wishListObject)),
+        updateCart: (productId,cartType,cartObject)=>dispatch(productActions.addToCart(productId,cartType,cartObject))
     }
 }
 export default connect(mapStateToProps,mapActionToProps)(Dashboard);

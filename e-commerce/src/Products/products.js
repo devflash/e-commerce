@@ -9,7 +9,9 @@ const Products = (props)=>{
                         productPrice={cur.productPrice}
                         productRating={cur.productRating}
                         favourite={cur.favourite}
-                        favouriteClick={()=>props.favouriteClick(cur.id)} />
+                        carted={cur.carted}
+                        favouriteClick={()=>props.favouriteClick(cur.id)} 
+                        cartClick={()=>props.cartClick(cur.id)}/>
     })
     return(
         <div className={styles.productContainer}>

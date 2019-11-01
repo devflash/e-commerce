@@ -24,7 +24,11 @@
         display: inline-block;
         margin-right: 10px;
         font-size: 20px;
+        &:hover{
+            cursor: pointer;
+        } 
        }
+
    }
    &::after
    {

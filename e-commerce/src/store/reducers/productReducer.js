@@ -4,7 +4,8 @@ const initialState = {
     products: null,
     loading: false,
     error: false,
-    wishlist: []
+    wishlist: [],
+    cart:[]
 }
 const productReducer = (state = initialState, action) => {
 
@@ -83,6 +84,55 @@ const productReducer = (state = initialState, action) => {
             }
 
 
+        }
+        case actionTypes.ADD_TO_CART:{
+            if (!action.cartType) {
+                return {
+
+                    ...state,
+                    products: state.products.map(cur => {
+                        if (cur.id != action.productId) {
+                            return cur;
+                        }
+                        return {
+                            ...cur,
+                            carted: !cur.carted
+                        }
+
+                    }),
+                    cart:[
+                        ...state.cart.slice(0,state.cart.lenght+1),
+                        action.cartObject.cartObjectToAdd,
+                        ...state.cart.slice(0,state.cart.length+1)
+                        
+                    ]
+
+
+
+                }
+
+            }
+            else
+            {
+                return {
+
+                    ...state,
+                    products: state.products.map(cur => {
+                        if (cur.id != action.productId) {
+                            return cur;
+                        }
+                        return {
+                            ...cur,
+                            carted: !cur.carted
+                        }
+
+                    }),
+                    cart:state.cart.filter(cur=>cur.id!==action.cartObject.cartObjectIdToRemove)
+
+
+
+                }
+            }
         }
         default:
             return state;
