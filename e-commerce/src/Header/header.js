@@ -7,12 +7,12 @@ class Header extends Component{
     render(){
         const notificationWishListClasses=[styles.notificationHide];
         const notificationCartListClasses=[styles.notificationHide]
-        if(this.props.wishlist.length>0)
+        if(this.props.wishListCount>0)
         {
             notificationWishListClasses.push(styles.notification);
             
         }
-        if(this.props.cart.length>0)
+        if(this.props.cartCount>0)
         {
             notificationCartListClasses.push(styles.notification);
             
@@ -26,10 +26,10 @@ class Header extends Component{
                 <div className={styles.navigation}>
                     <Link to="/wishList">Orders</Link>
                     <Link to="/wishList" className={styles.hasNotification}>Wishlist
-                        <span className={notificationWishListClasses.join(' ')}>{this.props.wishlist.length}</span>
+                        <span className={notificationWishListClasses.join(' ')}>{this.props.wishListCount}</span>
                     </Link>
                     <Link to="/cartList" className={styles.hasNotification}>Cart
-                        <span className={notificationCartListClasses.join(' ')}>{this.props.cart.length}</span>
+                        <span className={notificationCartListClasses.join(' ')}>{this.props.cartCount}</span>
                     </Link>
                 </div>
             </div>
@@ -39,8 +39,8 @@ class Header extends Component{
 }
 const mapStateToProps=(state)=>{
     return{
-        wishlist:state.wishlist,
-        cart:state.cart
+        wishListCount:state.favouriteCount,
+        cartCount:state.cartCount
     }
 }
 export default connect(mapStateToProps,null)(Header);

@@ -1,19 +1,42 @@
 import React, {Component} from 'react';
 import {connect} from'react-redux';
 import Error from '../Hoc/Error';
-import WishList from './WishList/wishList';
+import * as productActions from '../store/actions/productActions';
 import styles from './wishLists.module.scss';
 import List from '../UI/list';
 class wishList extends Component{
+
+     removeFavouriteClickHandler = (productId,event)=>{
+         event.preventDefault();
+        this.props.updateFavourite(productId,true);
+    }
+
+    addToCartClickHandler=(productId)=>{
+        this.props.updateCart(productId,false);
+    }
    
     render(){
        let wishListDisplay=<Error errorMessage="You have no product in wishlist"/>
-       if(this.props.wishListArray!==null && this.props.wishListArray.length>0)
+       let wishListArray=[]; 
+       if(this.props.products!==null && this.props.products.length>0)
        {
-        wishListDisplay=this.props.wishListArray.map(cur=>{
-               return <List productName={cur.productName} productPrice={cur.productPrice} listType="wishList"/>
-           })
-       }    
+            wishListArray=this.props.products.filter(cur=>{
+                return cur.favourite;
+            })
+       }     
+            
+        if(wishListArray!==null && wishListArray.length>0)
+        {
+            // wishListDisplay=wishListArray.slice(0,wishListArray.length+1);
+            wishListDisplay=wishListArray.map(cur=>{
+                return <List productName={cur.productName}
+                             productPrice={cur.productPrice} 
+                             listType="wishList"
+                             carted={cur.carted}
+                             removeFavourite={(event)=>this.removeFavouriteClickHandler(cur.id,event)}
+                             addCart={()=>this.addToCartClickHandler(cur.id)}/>
+            })
+        }    
         
         return(
             <div className={styles.wishListContainer}>
@@ -26,11 +49,14 @@ class wishList extends Component{
 
 const mapStateToProps=(state)=>{
     return{
-        wishListArray:state.wishlist
+        products:state.products
     }
     
 }
 const mapDispatchToProps=(dispatch)=>{
-    return{}
+    return{
+        updateFavourite: (projectId,favouriteType)=>dispatch(productActions.updateFavourite(projectId,favouriteType)),
+        updateCart: (productId,cartType)=>dispatch(productActions.addToCart(productId,cartType))
+    }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(wishList);

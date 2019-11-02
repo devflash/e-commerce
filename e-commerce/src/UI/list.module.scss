@@ -1,50 +1,77 @@
-.wishList{
-    display:flex;
+.listContainer {
     border-bottom: 1px solid #95a5a6;
-    padding: 5px 5px;
-    %wishListBox{
-        
-        flex: 1 0 25%;
-    }
-    .productDescription{
-        @extend %wishListBox;
-        text-align: left;
-        >span
-        {
-            display: block;
-            padding-bottom: 2px;
-            span:last-child
-            {
-                color:red;
+
+    .wishList {
+        display: flex;
+       
+        padding: 5px 5px;
+
+        %wishListBox {
+
+            flex: 1 0 25%;
+        }
+
+        .productDescription {
+            @extend %wishListBox;
+            text-align: left;
+
+            >span {
+                display: block;
+                padding-bottom: 2px;
+
+                span:last-child {
+                    color: red;
+                }
+            }
+
+
+        }
+
+        .wishListOptions {
+            @extend %wishListBox;
+            text-align: right;
+
+            a {
+                text-decoration: none;
+                color: #3498db;
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            %cartButton {
+                border: none;
+                outline: none;
+                border-radius: 7px;
+                padding: 10px;
+                &:hover{
+                    cursor: pointer;
+                }
+       
+            }
+            .enabledCartButton{
+                @extend %cartButton;
+                background-color: #f1c40f; 
+            }
+            .disabledCartButton{
+                @extend %cartButton;
+                background-color: #7f8c8d;
+                color:#fff; 
+            }
+
+            .quanity {
+                >span {
+                    padding-left: 22px;
+                    display: inline-block;
+                }
             }
         }
-       
-       
+
     }
-    .wishListOptions{
-        @extend %wishListBox;
-       text-align: right;
-       a{
-           text-decoration: none;
-           color:#3498db;
-           font-weight: 600;
-           font-size:14px;
-       }
-       .cartButton
-       {
-        border: none;
-        outline: none;
-        border-radius: 7px;
-        padding: 10px;
-        background-color: #f1c40f;
-       }
-       .quanity
-       {
-           >span{
-               padding-left:22px;
-               display: inline-block;
-           }
-       }
+    .cartConfirmation{
+        text-align: center;
+        span{
+            color:#27ae60;
+            font-weight:600;
+        }
     }
-    
 }

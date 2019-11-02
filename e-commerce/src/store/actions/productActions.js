@@ -1,21 +1,19 @@
 import * as actionTypes from '../actions/actionTypes';
 import axios from 'axios';
 
-export const updateFavourite= (productId,favouriteType,wishListObject)=>{
+export const updateFavourite= (productId,favouriteType)=>{
     return{
         type:actionTypes.UPDATE_FAVOURITE,
         productId:productId,
-        favouriteType:favouriteType,
-        wishListObject:wishListObject
+        favouriteType:favouriteType
     }
 }
 
-export const addToCart=(productId,cartType,cartObject)=>{
+export const addToCart=(productId,cartType)=>{
     return{
         type:actionTypes.ADD_TO_CART,
         productId:productId,
-        cartType:cartType,
-        cartObject:cartObject
+        cartType:cartType
 
     }
 }

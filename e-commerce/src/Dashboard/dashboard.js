@@ -79,38 +79,21 @@ class Dashboard extends Component
         }
    }
    favouriteChangeHandler=(productId)=>{
-    
-        this.props.products.forEach((cur,index)=>{
+        let favouriteType=null;
+        this.props.products.forEach(cur=>{
             if(cur.id===productId)
-            {
-                if(cur.favourite)
-                {
-                    this.props.updateFavourite(productId,cur.favourite,{wishListObjectIdToRemove:cur.id});
-                }
-                else
-                {
-                    this.props.updateFavourite(productId,cur.favourite,{wishListObjectToAdd:cur});
-                }
-            }
+                 favouriteType=cur.favourite;
         })
+       this.props.updateFavourite(productId,favouriteType);
         
    }
    addToCartClickHandler=(productId)=>{
-      
-        this.props.products.forEach((cur,index)=>{
-            if(cur.id===productId)
-            {
-                if(cur.carted)
-                {
-                    this.props.updateCart(productId,cur.carted,{cartObjectIdToRemove:cur.id});
-                }
-                else
-                {
-                    this.props.updateCart(productId,cur.carted,{cartObjectToAdd:cur});
-                }
-            }
-        })
-        
+    let cartType=null;
+    this.props.products.forEach(cur=>{
+        if(cur.id===productId)
+             cartType=cur.carted;
+    })
+   this.props.updateCart(productId,cartType);
    }
 
     render(){
@@ -169,8 +152,8 @@ const mapStateToProps=(state)=>{
 const mapActionToProps=(dispatch)=>{
     return{
         fetchCategories: ()=> dispatch(productActions.fetchCategories()),
-        updateFavourite: (projectId,favouriteType,wishListObject)=>dispatch(productActions.updateFavourite(projectId,favouriteType,wishListObject)),
-        updateCart: (productId,cartType,cartObject)=>dispatch(productActions.addToCart(productId,cartType,cartObject))
+        updateFavourite: (projectId,favouriteType)=>dispatch(productActions.updateFavourite(projectId,favouriteType)),
+        updateCart: (productId,cartType)=>dispatch(productActions.addToCart(productId,cartType))
     }
 }
 export default connect(mapStateToProps,mapActionToProps)(Dashboard);

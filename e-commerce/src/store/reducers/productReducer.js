@@ -4,8 +4,8 @@ const initialState = {
     products: null,
     loading: false,
     error: false,
-    wishlist: [],
-    cart:[]
+    favouriteCount: 0,
+    cartCount: 0
 }
 const productReducer = (state = initialState, action) => {
 
@@ -49,20 +49,11 @@ const productReducer = (state = initialState, action) => {
                         }
 
                     }),
-                    wishlist:[
-                        ...state.wishlist.slice(0,state.wishlist.lenght+1),
-                        action.wishListObject.wishListObjectToAdd,
-                        ...state.wishlist.slice(0,state.wishlist.length+1)
-                        
-                    ]
-
-
-
+                    favouriteCount: state.favouriteCount + 1
                 }
 
-            }
-            else
-            {
+
+            } else {
                 return {
 
                     ...state,
@@ -76,19 +67,14 @@ const productReducer = (state = initialState, action) => {
                         }
 
                     }),
-                    wishlist:state.wishlist.filter(cur=>cur.id!==action.wishListObject.wishListObjectIdToRemove)
-
-
-
+                    favouriteCount: state.favouriteCount - 1
                 }
             }
 
-
         }
-        case actionTypes.ADD_TO_CART:{
+        case actionTypes.ADD_TO_CART: {
             if (!action.cartType) {
                 return {
-
                     ...state,
                     products: state.products.map(cur => {
                         if (cur.id != action.productId) {
@@ -100,22 +86,13 @@ const productReducer = (state = initialState, action) => {
                         }
 
                     }),
-                    cart:[
-                        ...state.cart.slice(0,state.cart.lenght+1),
-                        action.cartObject.cartObjectToAdd,
-                        ...state.cart.slice(0,state.cart.length+1)
-                        
-                    ]
-
-
+                    cartCount: state.cartCount + 1
 
                 }
-
             }
             else
             {
                 return {
-
                     ...state,
                     products: state.products.map(cur => {
                         if (cur.id != action.productId) {
@@ -127,12 +104,11 @@ const productReducer = (state = initialState, action) => {
                         }
 
                     }),
-                    cart:state.cart.filter(cur=>cur.id!==action.cartObject.cartObjectIdToRemove)
+                    cartCount: state.cartCount - 1
 
-
-
-                }
+                } 
             }
+
         }
         default:
             return state;

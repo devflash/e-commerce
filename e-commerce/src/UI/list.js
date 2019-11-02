@@ -4,23 +4,28 @@ import {FaRupeeSign} from 'react-icons/fa';
 import {FiPlusCircle,FiMinusCircle} from 'react-icons/fi'
 const List=(props)=>{
     return(
-        <div className={styles.wishList}>
-        <div className={styles.productDescription}>
-            <span>{props.productName}</span>
-            <span>
-                <FaRupeeSign/>
-                <span>{props.productPrice}</span>
-            </span>
-        </div>
+        <div className={styles.listContainer}>
+            <div className={styles.wishList}>
+                <div className={styles.productDescription}>
+                    <span>{props.productName}</span>
+                <span>
+                    <FaRupeeSign/>
+                    <span>{props.productPrice}</span>
+                </span>
+            </div>
         
             {
                 props.listType==='wishList' ?
                                             <div className={styles.wishListOptions}> 
                                                 <div>
-                                                    <button className={styles.cartButton}>Add to cart</button>
+                                                    <button className={props.carted ? styles.disabledCartButton : styles.enabledCartButton}
+                                                            disabled={props.carted}
+                                                            onClick={props.addCart} >
+                                                                Add to cart
+                                                    </button>
                                                 </div>
                                                 <div>
-                                                    <a href="#">Remove item</a>
+                                                    <a href="#" onClick={props.removeFavourite}>Remove item</a>
                                                 </div>
                                             </div>
                                             :
@@ -38,7 +43,18 @@ const List=(props)=>{
             }
             
        
-    </div>
+            </div>
+            {
+                props.carted ?
+                                <div className={styles.cartConfirmation}>
+                                    <span>Product have been added to the cart</span>
+                                </div>
+                            :
+                                null
+            }
+            
+        </div>
+        
     )
 }
 export default List;
