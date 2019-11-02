@@ -28,7 +28,7 @@ class Header extends Component{
                     <Link to="/wishList" className={styles.hasNotification}>Wishlist
                         <span className={notificationWishListClasses.join(' ')}>{this.props.wishlist.length}</span>
                     </Link>
-                    <Link to="/wishList" className={styles.hasNotification}>Cart
+                    <Link to="/cartList" className={styles.hasNotification}>Cart
                         <span className={notificationCartListClasses.join(' ')}>{this.props.cart.length}</span>
                     </Link>
                 </div>

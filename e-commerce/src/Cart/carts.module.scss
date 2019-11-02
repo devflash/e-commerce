@@ -1,0 +1,21 @@
+.cartListContainer{
+    width:75%;
+    margin:10px auto;
+    .payAmount{
+        margin-top: 50px;
+        span{
+            font-size: 20px;
+            font-weight: 600;
+            display: block;
+        }
+        .payButton{
+            float: right;
+            border: none;
+            outline: none;
+            border-radius: 7px;
+            padding: 10px 80px;
+            background-color: #f1c40f;
+            font-size: 20px;
+        }
+    }
+}

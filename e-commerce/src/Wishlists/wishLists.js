@@ -3,6 +3,7 @@ import {connect} from'react-redux';
 import Error from '../Hoc/Error';
 import WishList from './WishList/wishList';
 import styles from './wishLists.module.scss';
+import List from '../UI/list';
 class wishList extends Component{
    
     render(){
@@ -10,7 +11,7 @@ class wishList extends Component{
        if(this.props.wishListArray!==null && this.props.wishListArray.length>0)
        {
         wishListDisplay=this.props.wishListArray.map(cur=>{
-               return <WishList productName={cur.productName} productPrice={cur.productPrice}/>
+               return <List productName={cur.productName} productPrice={cur.productPrice} listType="wishList"/>
            })
        }    
         
