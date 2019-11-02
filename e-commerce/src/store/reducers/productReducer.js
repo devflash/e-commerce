@@ -5,7 +5,8 @@ const initialState = {
     loading: false,
     error: false,
     favouriteCount: 0,
-    cartCount: 0
+    cartCount: 0,
+    totalPrice:0
 }
 const productReducer = (state = initialState, action) => {
 
@@ -109,6 +110,42 @@ const productReducer = (state = initialState, action) => {
                 } 
             }
 
+        }
+        case actionTypes.QUANTITY_ADD:{
+            return{
+                ...state,
+                products:state.products.map(cur=>{
+                    if(cur.id!==action.productId)
+                    {
+                        return cur;
+                    }
+                    return{
+                        ...cur,
+                        quantity:cur.quantity+1
+                    }
+                }),
+                totalPrice:state.totalPrice + action.productPrice
+
+
+            }
+        }
+        case actionTypes.QUANTITY_SUBTRACT:{
+            return{
+                ...state,
+                products:state.products.map(cur=>{
+                    if(cur.id!==action.productId)
+                    {
+                        return cur;
+                    }
+                    return{
+                        ...cur,
+                        quantity:cur.quantity-1
+                    }
+                }),
+                totalPrice:state.totalPrice - action.productPrice
+
+
+            }
         }
         default:
             return state;

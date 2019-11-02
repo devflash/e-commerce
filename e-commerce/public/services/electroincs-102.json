@@ -5,7 +5,9 @@
         "productPrice":"369",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
+
     },
     {
         "id":10002,
@@ -13,7 +15,8 @@
         "productPrice":"3,999",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10003,
@@ -21,7 +24,8 @@
         "productPrice":"7,499",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10004,
@@ -29,7 +33,8 @@
         "productPrice":"9,999",
         "productRating":3,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10005,
@@ -37,7 +42,8 @@
         "productPrice":"21,299",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10006,
@@ -45,7 +51,8 @@
         "productPrice":"5,499",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10007,
@@ -53,7 +60,8 @@
         "productPrice":"28,499",
         "productRating":3,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10008,
@@ -61,7 +69,8 @@
         "productPrice":"14,499",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10009,
@@ -69,7 +78,8 @@
         "productPrice":"54,499",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     },
     {
         "id":10010,
@@ -77,7 +87,8 @@
         "productPrice":"32,999",
         "productRating":4,
         "favourite":false,
-        "carted":false
+        "carted":false,
+        "quantity":1
     }
 
 ]

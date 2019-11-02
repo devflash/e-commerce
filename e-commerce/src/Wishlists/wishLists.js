@@ -4,6 +4,7 @@ import Error from '../Hoc/Error';
 import * as productActions from '../store/actions/productActions';
 import styles from './wishLists.module.scss';
 import List from '../UI/list';
+import {IoMdArrowRoundBack} from 'react-icons/io';
 class wishList extends Component{
 
      removeFavouriteClickHandler = (productId,event)=>{
@@ -14,8 +15,11 @@ class wishList extends Component{
     addToCartClickHandler=(productId)=>{
         this.props.updateCart(productId,false);
     }
-   
+    backButtonClickContainer=()=>{
+        this.props.history.push("/");
+    }
     render(){
+
        let wishListDisplay=<Error errorMessage="You have no product in wishlist"/>
        let wishListArray=[]; 
        if(this.props.products!==null && this.props.products.length>0)
@@ -40,6 +44,9 @@ class wishList extends Component{
         
         return(
             <div className={styles.wishListContainer}>
+                <div className={styles.backButton}>
+                    <IoMdArrowRoundBack value={{size:"1em"}} onClick={this.backButtonClickContainer}/>
+                </div>
                 {wishListDisplay}
             </div>
         )

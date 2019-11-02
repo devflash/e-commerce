@@ -1,6 +1,20 @@
 import * as actionTypes from '../actions/actionTypes';
 import axios from 'axios';
 
+export const quantityAdd=(productId,productPrice)=>{
+    return{
+        type:actionTypes.QUANTITY_ADD,
+        productId:productId,
+        productPrice:productPrice
+    }
+}
+export const quantitySubtract=(productId,productPrice)=>{
+    return{
+        type:actionTypes.QUANTITY_SUBTRACT,
+        productId:productId,
+        productPrice:productPrice
+    }
+}
 export const updateFavourite= (productId,favouriteType)=>{
     return{
         type:actionTypes.UPDATE_FAVOURITE,

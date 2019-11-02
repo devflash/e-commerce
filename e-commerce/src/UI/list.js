@@ -31,12 +31,12 @@ const List=(props)=>{
                                             :
                                             <div className={styles.wishListOptions}> 
                                                 <div className={styles.quanity}>
-                                                    <span><FiMinusCircle/></span>
-                                                    <span>1</span>
-                                                    <span><FiPlusCircle/></span>
+                                                    <span><FiMinusCircle onClick={props.quantitySubtract}/></span>
+                                                    <span>{props.quantity}</span>
+                                                    <span><FiPlusCircle onClick={props.quantityAdd}/></span>
                                                 </div>
                                                 <div>
-                                                    <a href="#">Remove item</a>
+                                                    <a href="#" onClick={props.removeFromCart}>Remove item</a>
                                                 </div>
                                             </div>
             
