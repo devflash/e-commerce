@@ -2,7 +2,7 @@ import React from 'react';
 import Product from './Product/product';
 import styles from './products.module.scss';
 const Products = (props)=>{
-    console.log(props);
+    
     let productList=props.products.map(cur=>{
         return <Product key={cur.id}
                         productId={cur.id} 
@@ -16,7 +16,7 @@ const Products = (props)=>{
     })
     return(
         <div className={styles.productContainer}>
-            <span>Products : Category Name</span>
+            <span>Products : {props.categoryName}</span>
             <div className={styles.productList}>
                 <ul>
                     <li>

@@ -21,20 +21,36 @@ const productReducer = (state = initialState, action) => {
         case actionTypes.FETCH_CATEGORIES_FAIL: {
             return {
                 ...state,
-                error: true
+                error: true,
+                loading:false
             }
         }
         case actionTypes.FETCH_PRODUCTS_SUCCESS: {
             return {
                 ...state,
                 products: action.products,
+                categories:state.categories.map(cur=>{
+                    if(cur.id!==action.categoryId)
+                    {
+                        return{
+                            ...cur,
+                            selected:false
+                        }
+                    }
+                    return{
+                        ...cur,
+                        selected:true
+                    }
+
+                }),
                 loading: false
             }
         }
         case actionTypes.FETCH_PRODUCTS_FAIL: {
             return {
                 ...state,
-                error: true
+                error: true,
+                loading:false
             }
         }
         case actionTypes.UPDATE_FAVOURITE: {

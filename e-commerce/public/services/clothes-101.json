@@ -1,0 +1,94 @@
+[
+    {
+        "id":20001,
+        "productName":"Katso Men's Cotton T-Shirt",
+        "productPrice":"369",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+
+    },
+    {
+        "id":20002,
+        "productName":"Campus Sutra Men's Cotton Full Sleeve T-Shirt",
+        "productPrice":"3,999",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20003,
+        "productName":"Amazon Brand - Symbol Men's Sweatshirt",
+        "productPrice":"7,499",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20004,
+        "productName":"PAUSE Men's Long Sleeve Round Neck Shrug",
+        "productPrice":"9,999",
+        "productRating":3,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20005,
+        "productName":"Ben Martin Men's Regular Fit Denim Jeans",
+        "productPrice":"7,299",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20006,
+        "productName":"Vaamsi Women's Crepe a-line Kurta",
+        "productPrice":"5,499",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20007,
+        "productName":"Bright Cotton Women's Cotton Kurta ",
+        "productPrice":"3,499",
+        "productRating":3,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20008,
+        "productName":"GOODTRY Women's Cotton Hoodies-Black",
+        "productPrice":"14,499",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":10009,
+        "productName":"Stylum Women's Cotton Block Print Flared Kurti (Yellow)",
+        "productPrice":"3,499",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20010,
+        "productName":"Amayra Women's Cotton Anarkali Kurti(Blue)",
+        "productPrice":"4,999",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    }
+
+]

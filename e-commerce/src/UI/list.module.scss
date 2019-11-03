@@ -59,9 +59,17 @@
             }
 
             .quanity {
+                padding-bottom:5px;
+                
                 >span {
                     padding-left: 22px;
                     display: inline-block;
+                }
+                >span:first-child,
+                >span:last-child{
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
             }
         }

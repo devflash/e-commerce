@@ -47,10 +47,11 @@ const fetchCategoriesFail=()=>{
     }
 }
 
-const fetchProductSuccess=(products)=>{
+const fetchProductSuccess=(products,categoryId)=>{
     return{
         type:actionTypes.FETCH_PRODUCTS_SUCCESS,
-        products:products
+        products:products,
+        categoryId:categoryId
     }
 }
 const fetchProductsFail=()=>{
@@ -70,11 +71,11 @@ export const fetchCategories=(dispatch)=>{
                     });
                     dispatch(fetchCategoriesSuccess(response.data,selectedCategory));
                     axios.get(`./services/${selectedCategory[0].id}.json`).then(response=>{
-                        dispatch(fetchProductSuccess(response.data));
+                        dispatch(fetchProductSuccess(response.data,selectedCategory[0].id));
                       
                         resolve()
                     }).catch(error=>{
-                        dispatch(fetchProductsFail(response.data));
+                        dispatch(fetchProductsFail());
                        
                         reject();
                     });
@@ -86,10 +87,27 @@ export const fetchCategories=(dispatch)=>{
             },2000)
             
         })
-    
+        
     }
         
 }
+
+export const fetchProducts=(categoryId)=>{
+    return dispatch=>{
+        dispatch(setLoading(true));
+        setTimeout(()=>{
+            axios.get(`./services/${categoryId}.json`).then(response=>{
+                dispatch(fetchProductSuccess(response.data,categoryId));
+                
+            }).catch(error=>{
+                dispatch(fetchProductsFail());
+                dispatch(setLoading(false));
+               
+            });    
+        },2000)
+    }
+}
+
 const setLoading = (loading)=>{
     return{
         type:actionTypes.SET_LOADING,

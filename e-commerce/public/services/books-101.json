@@ -1,0 +1,94 @@
+[
+    {
+        "id":30001,
+        "productName":"The Subtle Art of Not Giving a F*ck",
+        "productPrice":"262",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+
+    },
+    {
+        "id":30002,
+        "productName":"Rich Dad Poor Dad",
+        "productPrice":"220",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":20003,
+        "productName":"Mein Kampf",
+        "productPrice":"115",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":30004,
+        "productName":"The Pursuit of Happiness",
+        "productPrice":"99",
+        "productRating":3,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":30005,
+        "productName":"Raavan: Enemy of Aryavarta",
+        "productPrice":"250",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":30006,
+        "productName":"The Monk Who Sold His Ferrari",
+        "productPrice":"220",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":30007,
+        "productName":"Who Will Cry When You Die?",
+        "productPrice":"150",
+        "productRating":3,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":10008,
+        "productName":"Apple AirPods with Charging Case",
+        "productPrice":"14,499",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":30009,
+        "productName":"The Great Gatsby",
+        "productPrice":"557",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    },
+    {
+        "id":30010,
+        "productName":"How to Stop Worrying and Start Living",
+        "productPrice":"32,999",
+        "productRating":4,
+        "favourite":false,
+        "carted":false,
+        "quantity":1
+    }
+
+]
