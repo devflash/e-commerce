@@ -9,11 +9,20 @@ class wishList extends Component{
 
      removeFavouriteClickHandler = (productId,event)=>{
          event.preventDefault();
-        this.props.updateFavourite(productId,true);
+         const confirmation=window.confirm('Remove product from the wishlist? Action can not be reverted.');
+        if (confirmation)
+            this.props.updateFavourite(productId,true);
     }
 
     addToCartClickHandler=(productId)=>{
-        this.props.updateCart(productId,false);
+        let productPrice=null;
+        this.props.products.forEach(cur=>{
+            if(cur.id===productId)
+            {
+                productPrice=parseInt(cur.productPrice.replace(/,/g, ''));
+            }
+        });
+        this.props.updateCart(productId,false,productPrice);
     }
     backButtonClickContainer=()=>{
         this.props.history.push("/");
@@ -63,7 +72,7 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         updateFavourite: (projectId,favouriteType)=>dispatch(productActions.updateFavourite(projectId,favouriteType)),
-        updateCart: (productId,cartType)=>dispatch(productActions.addToCart(productId,cartType))
+        updateCart: (productId,cartType,productPrice)=>dispatch(productActions.addToCart(productId,cartType,productPrice))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(wishList);

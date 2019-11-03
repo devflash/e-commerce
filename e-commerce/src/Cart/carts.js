@@ -8,7 +8,19 @@ import * as productActions from '../store/actions/productActions';
 class cart extends Component{
     removeFromCartClickHandler = (productId,event)=>{
         event.preventDefault();
-       this.props.updateCart(productId,true);
+        const confirmation=window.confirm('Remove product from the cart? Action can not be reverted.');
+        if (confirmation)
+            {
+                let productPrice=null;
+                this.props.products.forEach(cur=>{
+                    if(cur.id===productId)
+                    {
+                        productPrice=parseInt(cur.productPrice.replace(/,/g, ''));
+                    }
+                });
+                this.props.updateCart(productId,true,productPrice);
+            }
+            
    }
     backButtonClickContainer=()=>{
         this.props.history.push("/");
@@ -19,20 +31,23 @@ class cart extends Component{
         this.props.products.forEach(cur=>{
             if(cur.id===productId)
             {
-                productPrice=parseInt(cur.productPrice);
+                productPrice=parseInt(cur.productPrice.replace(/,/g, ''));
             }
         });
         this.props.quantityAdd(productId,productPrice);
     }
     quantitySubtractClickHandler=(productId)=>{
         let productPrice=null;
+        let currentQuantity=null;
         this.props.products.forEach(cur=>{
             if(cur.id===productId)
             {
-                productPrice=parseInt(cur.productPrice);
+                productPrice=parseInt(cur.productPrice.replace(/,/g, ''));
+                currentQuantity=cur.quantity;
             }
         });
-        this.props.quantitySubtract(productId,productPrice);
+        if(currentQuantity>1)
+            this.props.quantitySubtract(productId,productPrice);
     }
    
     render(){
@@ -95,7 +110,7 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         quantityAdd:(productId,productPrice)=>dispatch(productActions.quantityAdd(productId,productPrice)),
         quantitySubtract:(productId,productPrice)=>dispatch(productActions.quantitySubtract(productId,productPrice)),
-        updateCart: (productId,cartType)=>dispatch(productActions.addToCart(productId,cartType))
+        updateCart: (productId,cartType,productPrice)=>dispatch(productActions.addToCart(productId,cartType,productPrice))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(cart);

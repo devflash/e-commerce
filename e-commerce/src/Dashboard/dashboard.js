@@ -4,6 +4,8 @@ import Products from '../Products/products';
 import Pagination from '../UI/pagination';
 import styles from './dashboard.module.scss';
 import {connect} from 'react-redux';
+import Error from '../Hoc/Error'
+import HashLoader from 'react-spinners/HashLoader';
 import * as productActions from '../store/actions/productActions';
 class Dashboard extends Component
 {
@@ -89,11 +91,16 @@ class Dashboard extends Component
    }
    addToCartClickHandler=(productId)=>{
     let cartType=null;
+    let productPrice=null;
     this.props.products.forEach(cur=>{
         if(cur.id===productId)
-             cartType=cur.carted;
+        {
+            cartType=cur.carted;
+            productPrice=parseInt(cur.productPrice.replace(/,/g, ''));
+        }
+             
     })
-   this.props.updateCart(productId,cartType);
+   this.props.updateCart(productId,cartType,productPrice);
    }
 
     render(){
@@ -108,37 +115,46 @@ class Dashboard extends Component
             productsToDisplay=this.props.products.slice(startIndex,lastIndex);
             this.enableDisablePaginationButtons(this.state.currentPage);
         }
+        let dashboardDisplay=<Error message="Something went wrong"/>
+        dashboardDisplay=this.props.loading && <div className={styles.loaderContainer}><HashLoader css={'margin:0 auto;'} color={'#2980b9'}/></div>
+        if(this.props.categories && this.props.products)
+        {
+            dashboardDisplay=
+            (<React.Fragment>
+            <div>
+                {
+                    this.props.categories ?
+                     <Catgories categories={this.props.categories}/>
+                     :
+                     null
+                }
+              
+            </div>
+            <div>
+                {
+                    this.props.products ?
+                        <Products products={productsToDisplay}
+                                  favouriteClick={(productId)=>this.favouriteChangeHandler(productId)}
+                                  cartClick={(productId)=>this.addToCartClickHandler(productId)}/>
+                   :            
+                        null
+                }
+
+               
+            </div>
+            <div>
+                <Pagination backwardEnable={this.backwardEnable} 
+                            currentPage={this.state.currentPage}
+                            forwardEnable={this.forwardEnable} 
+                            backwardButtonClick={this.backwardClickHandler}
+                            forwardButtonClick={this.forwardClickHandler}/>
+            </div>
+            </React.Fragment>)
+        }
             
         return(
             <div className={styles.dashboard}>
-                <div>
-                    {
-                        this.props.categories ?
-                         <Catgories categories={this.props.categories}/>
-                         :
-                         null
-                    }
-                  
-                </div>
-                <div>
-                    {
-                        this.props.products ?
-                            <Products products={productsToDisplay}
-                                      favouriteClick={(productId)=>this.favouriteChangeHandler(productId)}
-                                      cartClick={(productId)=>this.addToCartClickHandler(productId)}/>
-                       :            
-                            null
-                    }
-
-                   
-                </div>
-                <div>
-                    <Pagination backwardEnable={this.backwardEnable} 
-                                currentPage={this.state.currentPage}
-                                forwardEnable={this.forwardEnable} 
-                                backwardButtonClick={this.backwardClickHandler}
-                                forwardButtonClick={this.forwardClickHandler}/>
-                </div>
+                {dashboardDisplay}
             </div>
         )
     }
@@ -146,14 +162,16 @@ class Dashboard extends Component
 const mapStateToProps=(state)=>{
     return{
         categories:state.categories,
-        products:state.products
+        products:state.products,
+        loading:state.loading
     }
 }
 const mapActionToProps=(dispatch)=>{
     return{
         fetchCategories: ()=> dispatch(productActions.fetchCategories()),
         updateFavourite: (projectId,favouriteType)=>dispatch(productActions.updateFavourite(projectId,favouriteType)),
-        updateCart: (productId,cartType)=>dispatch(productActions.addToCart(productId,cartType))
+        updateCart: (productId,cartType,productPrice)=>dispatch(productActions.addToCart(productId,cartType,productPrice))
+    
     }
 }
 export default connect(mapStateToProps,mapActionToProps)(Dashboard);

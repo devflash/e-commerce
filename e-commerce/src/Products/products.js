@@ -4,7 +4,8 @@ import styles from './products.module.scss';
 const Products = (props)=>{
     console.log(props);
     let productList=props.products.map(cur=>{
-        return <Product productId={cur.id} 
+        return <Product key={cur.id}
+                        productId={cur.id} 
                         productName={cur.productName}
                         productPrice={cur.productPrice}
                         productRating={cur.productRating}

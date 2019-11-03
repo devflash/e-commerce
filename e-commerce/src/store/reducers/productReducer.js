@@ -6,7 +6,7 @@ const initialState = {
     error: false,
     favouriteCount: 0,
     cartCount: 0,
-    totalPrice:0
+    totalPrice: 0
 }
 const productReducer = (state = initialState, action) => {
 
@@ -14,7 +14,8 @@ const productReducer = (state = initialState, action) => {
         case actionTypes.FETCH_CATEGORIES_SUCCESS: {
             return {
                 ...state,
-                categories: action.categories
+                categories: action.categories,
+
             }
         }
         case actionTypes.FETCH_CATEGORIES_FAIL: {
@@ -26,7 +27,8 @@ const productReducer = (state = initialState, action) => {
         case actionTypes.FETCH_PRODUCTS_SUCCESS: {
             return {
                 ...state,
-                products: action.products
+                products: action.products,
+                loading: false
             }
         }
         case actionTypes.FETCH_PRODUCTS_FAIL: {
@@ -87,12 +89,11 @@ const productReducer = (state = initialState, action) => {
                         }
 
                     }),
-                    cartCount: state.cartCount + 1
+                    cartCount: state.cartCount + 1,
+                    totalPrice: state.totalPrice + action.productPrice
 
                 }
-            }
-            else
-            {
+            } else {
                 return {
                     ...state,
                     products: state.products.map(cur => {
@@ -105,46 +106,55 @@ const productReducer = (state = initialState, action) => {
                         }
 
                     }),
-                    cartCount: state.cartCount - 1
+                    cartCount: state.cartCount - 1,
+                    totalPrice: state.totalPrice - action.productPrice
 
-                } 
+                }
             }
 
         }
-        case actionTypes.QUANTITY_ADD:{
-            return{
+        case actionTypes.QUANTITY_ADD: {
+            return {
                 ...state,
-                products:state.products.map(cur=>{
-                    if(cur.id!==action.productId)
-                    {
+                products: state.products.map(cur => {
+                    if (cur.id !== action.productId) {
                         return cur;
                     }
-                    return{
+
+                    return {
                         ...cur,
-                        quantity:cur.quantity+1
+                        quantity: cur.quantity + 1
                     }
                 }),
-                totalPrice:state.totalPrice + action.productPrice
+                totalPrice: state.totalPrice + action.productPrice
 
 
             }
         }
-        case actionTypes.QUANTITY_SUBTRACT:{
-            return{
+        case actionTypes.QUANTITY_SUBTRACT: {
+            return {
                 ...state,
-                products:state.products.map(cur=>{
-                    if(cur.id!==action.productId)
-                    {
+                products: state.products.map(cur => {
+                    if (cur.id !== action.productId) {
                         return cur;
                     }
-                    return{
+
+                    return {
                         ...cur,
-                        quantity:cur.quantity-1
+                        quantity: cur.quantity - 1
                     }
+
+
                 }),
-                totalPrice:state.totalPrice - action.productPrice
+                totalPrice: state.totalPrice - action.productPrice
 
 
+            }
+        }
+        case actionTypes.SET_LOADING: {
+            return {
+                ...state,
+                loading: action.loading
             }
         }
         default:

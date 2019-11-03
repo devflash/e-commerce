@@ -23,11 +23,12 @@ export const updateFavourite= (productId,favouriteType)=>{
     }
 }
 
-export const addToCart=(productId,cartType)=>{
+export const addToCart=(productId,cartType,productPrice)=>{
     return{
         type:actionTypes.ADD_TO_CART,
         productId:productId,
-        cartType:cartType
+        cartType:cartType,
+        productPrice:productPrice
 
     }
 }
@@ -60,27 +61,42 @@ const fetchProductsFail=()=>{
 export const fetchCategories=(dispatch)=>{
     return dispatch =>{
         return new Promise((resolve,reject)=>{
-            axios.get('./services/categories.json').then(response=>{
-                let categories=response.data;
-                let selectedCategory=categories.filter(cur=>{
-                   return cur.selected;
-                });
-                dispatch(fetchCategoriesSuccess(response.data,selectedCategory));
-                axios.get(`./services/${selectedCategory[0].id}.json`).then(response=>{
-                    dispatch(fetchProductSuccess(response.data));
-                    resolve()
+            dispatch(setLoading(true));
+            setTimeout(()=>{
+                axios.get('./services/categories.json').then(response=>{
+                    let categories=response.data;
+                    let selectedCategory=categories.filter(cur=>{
+                       return cur.selected;
+                    });
+                    dispatch(fetchCategoriesSuccess(response.data,selectedCategory));
+                    axios.get(`./services/${selectedCategory[0].id}.json`).then(response=>{
+                        dispatch(fetchProductSuccess(response.data));
+                      
+                        resolve()
+                    }).catch(error=>{
+                        dispatch(fetchProductsFail(response.data));
+                       
+                        reject();
+                    });
                 }).catch(error=>{
-                    dispatch(fetchProductsFail(response.data));
+                    dispatch(fetchCategoriesFail());
+                    
                     reject();
                 });
-            }).catch(error=>{
-                dispatch(fetchCategoriesFail());
-                reject();
-            });
+            },2000)
+            
         })
     
     }
         
 }
-     
+const setLoading = (loading)=>{
+    return{
+        type:actionTypes.SET_LOADING,
+        loading:loading
+    }
+}
+
+
+
     

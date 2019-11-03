@@ -11,3 +11,5 @@ export const ADD_TO_CART="ADD_TO_CART";
 
 export const QUANTITY_ADD="QUANTITY_ADD";
 export const QUANTITY_SUBTRACT="QUANTITY_SUBTRACT";
+
+export const SET_LOADING="SET_LOADING";
